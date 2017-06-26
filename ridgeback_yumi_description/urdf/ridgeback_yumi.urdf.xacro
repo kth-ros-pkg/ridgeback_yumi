@@ -15,10 +15,10 @@
   <xacro:include filename="$(find yumi_description)/urdf/Grippers/yumi_servo_gripper.xacro"/>
   <!-- Import Gazebo plugins -->
   <xacro:include filename="$(find yumi_description)/urdf/Gazebo/gazebo.urdf.xacro"/>
-  <!-- Fix to world just for testing -->
-  <link name="world"/>
+  <!-- Fix to world just for testing
+  <link name="world"/> -->
   <!--yumi-->
-  <xacro:yumi name="yumi" hardware_interface="hardware_interface/$(arg arms_interface)" parent="world">
+  <xacro:yumi name="yumi" hardware_interface="hardware_interface/$(arg arms_interface)" parent="base_link">
     <origin xyz="0 0 0.1" rpy="0 0 0" />
   </xacro:yumi>
   <!--right gripper-->
@@ -33,13 +33,12 @@
 
 
 
-  <xacro:property name="pedestal_height" value="-0.54" />
-  <xacro:property name="pedestal_diameter" value="0.203" />
-  <xacro:property name="pedestal_offset_x" value="-0.30" />
+  <xacro:property name="pedestal_height" value="0.54" />
+  <xacro:property name="pedestal_offset_x" value="0.30" />
 
   <joint name="ridgeback_base_to_yumi" type="fixed">
     <origin rpy="0 0 0" xyz="${pedestal_offset_x} 0 ${pedestal_height}" />
-    <parent link="yumi_body" />
-    <child link="base_link" />
+    <parent link="base_link" />
+    <child link="yumi_body" />
   </joint>
 </robot>
