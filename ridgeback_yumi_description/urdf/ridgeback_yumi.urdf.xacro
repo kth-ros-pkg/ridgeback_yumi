@@ -41,4 +41,6 @@
     <parent link="base_link" />
     <child link="yumi_body" />
   </joint>
+
+
 </robot>

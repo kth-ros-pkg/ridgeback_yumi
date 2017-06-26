@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<launch>
+
+
+	<!-- Load joint controller configurations from YAML file to parameter server -->
+	<rosparam file="$(find yumi_control)/config/traj_controllers.yaml" command="load" ns="/yumi"/>
+	<arg name="yumi_controllers" default="joint_state_controller 
+										  joint_traj_vel_controller_l
+										  joint_traj_vel_controller_r
+										  gripper_effort_pos_controller_r
+										  gripper_effort_pos_controller_l"/>
+	<!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="$(arg yumi_controllers)" ns="/yumi"/> -->
+
+	<!--  Hardware interfaces for the joints and grippers -->
+    <arg name="arms_hardware_interface" default="VelocityJointInterface"/>
+    <arg name="grippers_hardware_interface" default="EffortJointInterface"/>
+
+
+	<node name="yumi_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+	    <remap from="/joint_states" to="/yumi/joint_states" />
+	</node>
+	<node name="joint_remapper" pkg="yumi_hw" type="gazebo_joints_remap.py" />
+
+
+
+
+	<rosparam command="load" file="$(find ridgeback_control)/config/control.yaml" ns="/yumi"/>
+	<node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" />
+	<node pkg="topic_tools" type="relay" name="cmd_vel_relay"
+	    args="cmd_vel ridgeback_velocity_controller/cmd_vel" />
+
+    <arg name="ridgeback_controllers" default="ridgeback_joint_publisher 
+        	  ridgeback_velocity_controller
+        	  --shutdown-timeout 1" />
+
+    <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="$(arg ridgeback_controllers)" /> -->
+	
+<!-- 	<include file="$(find ridgeback_control)/launch/teleop.launch">
+		<arg name="joystick" value="false"/>
+	</include> -->
+
+  <rosparam param="/gazebo_ros_control/pid_gains">
+    front_left_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    front_right_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    rear_left_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    rear_right_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+  </rosparam>
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+  <!-- Spawn Ridgeback -->
+<!--   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+        args="-urdf -model ridgeback -param robot_description -x 0 -y 0 -z 0.1" />
+ -->
+
+	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="$(arg yumi_controllers) $(arg ridgeback_controllers)" ns="/yumi"/>
+
+
+	<!-- URDF / SRDF parameters -->
+	<arg name="ridgeback_config" default="base" />
+	<param name="robot_description"
+     command="$(find ridgeback_yumi_description)/scripts/env_run $(find ridgeback_yumi_description)/urdf/configs/$(arg ridgeback_config) $(find xacro)/xacro '$(find ridgeback_yumi_description)/urdf/ridgeback_yumi.urdf.xacro' arms_interface:=$(arg arms_hardware_interface) grippers_interface:=$(arg grippers_hardware_interface)" />
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model ridgeback_yumi -param robot_description"  respawn="false" output="screen" />
+
+
+
+	<!-- Configuration for debug  -->
+	<arg name="debug" default="false"/>
+	<arg unless="$(arg debug)" name="launch_prefix" value="" />
+	<arg if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+	<arg name="use_sim_time" default="true" />
+	<arg name="gui" default="true" />
+	<arg name="headless" default="false" />
+	<arg name="world_name" default="$(find ridgeback_gazebo)/worlds/ridgeback_race.world" />
+  <!-- Launch Gazebo with the specified world -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="debug" value="$(arg debug)" />
+		<arg name="gui" value="$(arg gui)" />
+		<arg name="use_sim_time" value="$(arg use_sim_time)" />
+		<arg name="headless" value="$(arg headless)" />
+		<arg name="world_name" value="$(arg world_name)" />
+		<arg name="paused" value="false"/>
+	</include>
+
+
+</launch>
