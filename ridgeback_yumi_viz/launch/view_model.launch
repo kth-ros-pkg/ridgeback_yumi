@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 <launch>
 	<!-- Ridgeback configuration to view. See ridgeback_description for details. -->
-	<arg name="config" default="base" />
+	<arg name="ridgeback_config" default="base" />
 
 	<include file="$(find ridgeback_yumi_description)/launch/description.launch">
-		<arg name="config" value="$(arg config)" />
+		<arg name="config" value="$(arg ridgeback_config)" />
 	</include>
 
 
 	<param name="use_gui" value="true" />
-	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find ridgeback_viz)/rviz/model.rviz" />
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find ridgeback_yumi_viz)/rviz/model.rviz" />
+
 </launch>
