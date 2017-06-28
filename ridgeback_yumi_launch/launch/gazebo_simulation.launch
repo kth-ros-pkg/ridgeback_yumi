@@ -2,7 +2,6 @@
 <launch>
 
 
-	<!-- Load joint controller configurations from YAML file to parameter server -->
 	<rosparam file="$(find yumi_control)/config/traj_controllers.yaml" command="load" ns="/yumi"/>
 	<arg name="yumi_controllers" default="joint_state_controller 
 										  joint_traj_vel_controller_l
@@ -10,11 +9,6 @@
 										  gripper_effort_pos_controller_r
 										  gripper_effort_pos_controller_l"/>
 	<node name="yumi_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="$(arg yumi_controllers)" ns="/yumi"/>
-
-	<!--  Hardware interfaces for the joints and grippers -->
-    <arg name="arms_hardware_interface" default="VelocityJointInterface"/>
-    <arg name="grippers_hardware_interface" default="EffortJointInterface"/>
-
 	<node name="yumi_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
 	    <remap from="/joint_states" to="/yumi/joint_states" />
 	</node>
@@ -58,7 +52,6 @@
       d: 0
   </rosparam>
 	
-	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
 
 
@@ -68,9 +61,9 @@
 
 	<!-- URDF / SRDF parameters -->
 	<arg name="ridgeback_config" default="base" />
-	<param name="robot_description"
-     command="$(find ridgeback_yumi_description)/scripts/env_run $(find ridgeback_yumi_description)/urdf/configs/$(arg ridgeback_config) $(find xacro)/xacro '$(find ridgeback_yumi_description)/urdf/ridgeback_yumi.urdf.xacro' arms_interface:=$(arg arms_hardware_interface) grippers_interface:=$(arg grippers_hardware_interface)" />
-
+	<include file="$(find ridgeback_yumi_description)/launch/description.launch">
+		<arg name="config" value="$(arg ridgeback_config)" />
+	</include>
 	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model ridgeback_yumi -param robot_description"  respawn="false" output="screen" />
 
 	<!-- Configuration for debug  -->

@@ -11,5 +11,4 @@
 	<param name="use_gui" value="true"/>
 	<arg name="mode" default="robot" />
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ridgeback_yumi_viz)/rviz/$(arg mode).rviz"/>
-
 </launch>
