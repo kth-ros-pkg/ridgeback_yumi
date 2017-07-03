@@ -33,14 +33,32 @@
 
 
 
-  <xacro:property name="pedestal_height" value="0.54" />
-  <xacro:property name="pedestal_offset_x" value="0.30" />
+  <xacro:property name="pedestal_height" value="0.28" />
+  <xacro:property name="pedestal_offset_x" value="0.32" />
+  <xacro:property name="yumi_offset_x" value="0.06" />
+  <xacro:property name="yumi_height" value="0.25" />
 
-  <joint name="ridgeback_base_to_yumi" type="fixed">
-    <origin rpy="0 0 0" xyz="${pedestal_offset_x} 0 ${pedestal_height}" />
+  <joint name="ridgeback_base_to_pedestal" type="fixed">
+    <origin rpy="0 0 ${PI}" xyz="${pedestal_offset_x} 0 ${pedestal_height}" />
     <parent link="base_link" />
-    <child link="yumi_body" />
+    <child link="yumi_pedestal" />
   </joint>
 
+  <link name="yumi_pedestal">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 ${PI}" />
+      <geometry>
+        <mesh filename="package://ridgeback_yumi_description/meshes/IRB14000_mount.stl"/>
+      </geometry>
+      <material name="black" />
+    </visual>
+  </link>
+
+
+  <joint name="pedestal_to_yumi" type="fixed">
+    <origin rpy="0 0 ${PI}" xyz="${yumi_offset_x} 0 ${yumi_height}" />
+    <parent link="yumi_pedestal" />
+    <child link="yumi_body" />
+  </joint>
 
 </robot>
