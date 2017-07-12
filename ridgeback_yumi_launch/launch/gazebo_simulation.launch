@@ -6,8 +6,8 @@
 	<arg name="yumi_controllers" default="joint_state_controller 
 										  joint_traj_vel_controller_l
 										  joint_traj_vel_controller_r
-										  gripper_effort_pos_controller_r
-										  gripper_effort_pos_controller_l"/>
+										  gripper_effort_controller_r
+										  gripper_effort_controller_l"/>
 	<node name="yumi_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="$(arg yumi_controllers)" ns="/yumi"/>
 	<node name="yumi_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
 	    <remap from="/joint_states" to="/yumi/joint_states" />
