@@ -1,14 +1,19 @@
 <?xml version="1.0"?>
 <launch>
-	<rosparam file="$(find yumi_control)/config/traj_controllers.yaml" command="load" ns="/yumi"/>
-	<arg name="yumi_controllers" default="joint_state_controller 
-										  joint_traj_vel_controller_l
-										  joint_traj_vel_controller_r
-										  gripper_effort_pos_controller_r
-										  gripper_effort_pos_controller_l"/>
-	<node name="yumi_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="$(arg yumi_controllers)" ns="/yumi"/>
-    <arg name="arms_hardware_interface" default="VelocityJointInterface"/>
-    <arg name="grippers_hardware_interface" default="EffortJointInterface"/>
+
+    <!-- URDF / SRDF parameters -->
+    <arg name="ridgeback_config" default="base" />
+    <include file="$(find ridgeback_yumi_description)/launch/description.launch">
+        <arg name="config" value="$(arg ridgeback_config)" />
+    </include>
+
+
+    <!-- Load joint controller configurations from YAML file to parameter server -->
+    <rosparam file="$(find yumi_control)/config/traj_controllers.yaml" command="load" ns="/yumi"/>
+    <arg name="arm_controllers" default="joint_state_controller
+                                     joint_traj_vel_controller_l
+                                     joint_traj_vel_controller_r"/>
+    <node name="arm_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="$(arg arm_controllers)" ns="/yumi"/>
     <arg name="ip" default="192.168.125.1"/>
     <arg name="port" default="80"/>
     <arg name="egm" default="true"/>
@@ -22,16 +27,20 @@
     <node required="true" name="yumi_gripper" pkg="yumi_hw" type="yumi_gripper_node" respawn="false" ns="/yumi" output="screen"> 
         <param name="ip" value="$(arg ip)"/>
     </node>
-	<node name="yumi_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
-	    <remap from="/joint_states" to="/yumi/joint_states" />
-	</node>
-	<node name="joint_remapper" pkg="yumi_hw" type="gazebo_joints_remap.py" />
+    <node name="yumi_joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+        <rosparam param="source_list">["/yumi/joint_states", "/yumi/gripper_states"]</rosparam>
+        <remap from="/joint_states" to="/yumi/joint_states" />
+    </node>
+    <node name="yumi_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+        <remap from="/joint_states" to="/yumi/joint_states" />
+    </node>
+    <param name="startup_time" value="20"/>
+    <node name="joint_remapper" pkg="yumi_hw" type="egm_joints_remap.py" />
 
 
 
-	<!-- URDF / SRDF parameters -->
-	<arg name="ridgeback_config" default="base" />
-    <include file="$(find ridgeback_yumi_description)/launch/description.launch">
-        <arg name="config" value="$(arg ridgeback_config)" />
-    </include>
+    <param name="use_gui" value="true"/>
+    <arg name="mode" default="robot" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ridgeback_yumi_viz)/rviz/$(arg mode).rviz"/>
+
 </launch>
