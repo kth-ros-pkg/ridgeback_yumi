@@ -15,10 +15,10 @@
   <xacro:include filename="$(find yumi_description)/urdf/Grippers/yumi_servo_gripper.xacro"/>
   <!-- Import Gazebo plugins -->
   <xacro:include filename="$(find yumi_description)/urdf/Gazebo/gazebo.urdf.xacro"/>
-  <!-- Fix to world just for testing
-  <link name="world"/> -->
+
+
   <!--yumi-->
-  <xacro:yumi name="yumi" hardware_interface="hardware_interface/VelocityJointInterface" parent="base_link">
+  <xacro:yumi name="yumi" hardware_interface="hardware_interface/VelocityJointInterface" parent="yumi_pedestal">
     <origin xyz="0 0 0.1" rpy="0 0 0" />
   </xacro:yumi>
   <!--right gripper-->
@@ -45,6 +45,13 @@
   </joint>
 
   <link name="yumi_pedestal">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 ${PI}" />
+      <geometry>
+        <mesh filename="package://ridgeback_yumi_description/meshes/IRB14000_mount.stl"/>
+      </geometry>
+      <material name="black" />
+    </collision>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 ${PI}" />
       <geometry>
@@ -58,7 +65,7 @@
   <joint name="pedestal_to_yumi" type="fixed">
     <origin rpy="0 0 ${PI}" xyz="${yumi_offset_x} 0 ${yumi_height}" />
     <parent link="yumi_pedestal" />
-    <child link="yumi_body" />
+    <child link="yumi_base_link" />
   </joint>
 
 </robot>

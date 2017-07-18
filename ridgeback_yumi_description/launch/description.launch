@@ -6,6 +6,5 @@
 	     command="$(find ridgeback_description)/scripts/env_run
 	              $(find ridgeback_description)/urdf/configs/$(arg config)
 	              $(find xacro)/xacro $(find ridgeback_yumi_description)/urdf/ridgeback_yumi.urdf.xacro" />
-	<!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /> -->
 	
 </launch>
