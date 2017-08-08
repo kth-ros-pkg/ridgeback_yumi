@@ -1,1 +1,0 @@
-# ridgeback_yumi
