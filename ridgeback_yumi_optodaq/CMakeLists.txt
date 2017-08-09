@@ -11,10 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roslaunch
 )
 
-
 find_package(Boost REQUIRED COMPONENTS system thread program_options)
-find_package(CURL REQUIRED)
-find_package(TinyXML REQUIRED)
 
 
 catkin_package(
@@ -27,8 +24,6 @@ include_directories(
 )
 
 
-
-## Declare a cpp executable
 add_executable(left_etherdaq_node src/left_etherdaq_node.cpp)
 target_link_libraries(left_etherdaq_node etherdaq_driver)
 

@@ -150,12 +150,13 @@ int main(int argc, char **argv)
 	unsigned int packetCount = 0; 
 	ros::Time startTime(ros::Time::now());	
 
-
+	ROS_INFO("--------------------------------------------------------------------------------------------------------------");
 	ROS_INFO("Optoforce 6 axis Force/Torque sensor");
 	ROS_INFO("IP address: %s", ip.c_str());
 	ROS_INFO("Publish rate: %f Hz", pub_rate_hz);
 	ROS_INFO("Filter setting: %i (0 = No filter; 1 = 500 Hz; 2 = 150 Hz; 3 = 50 Hz; 4 = 15 Hz; 5 = 5 Hz; 6 = 1.5 Hz)", filter);
 	ROS_INFO("Sensor data topic name: %s", topic_name.c_str());
+	ROS_INFO("--------------------------------------------------------------------------------------------------------------");
 
 	while (ros::ok())
 	{
