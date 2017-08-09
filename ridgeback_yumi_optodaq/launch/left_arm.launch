@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+
+	<node name="left_etherdaq_node" pkg="ridgeback_yumi_optodaq" type="left_etherdaq_node" respawn="false" output="screen">
+		<param name="ip" value="192.168.125.3"/>
+	    <param name="pub_rate_hz" value="1000.0"/>
+	    <param name="filter" value="1000.0"/>
+	    <param name="frame_id" value="optodaq_left_arm_link"/>
+	    <param name="cancel_bias" value="false"/>
+	</node>
+
+</launch>
