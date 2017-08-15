@@ -78,7 +78,7 @@ int main(int argc, char **argv)
 	string node_name = sensor_location + "etherdaq_node";
 
 	ros::init(argc, argv, node_name);
-	ros::NodeHandle nh;
+	ros::NodeHandle nh("~");
 
 	float pub_rate_hz;
 	int filter; 
@@ -90,7 +90,7 @@ int main(int argc, char **argv)
 	nh.param("ip", ip, std::string("192.168.125.3") );
 	nh.param("pub_rate_hz", pub_rate_hz, 1000.0f);
 	nh.param("filter", filter, 4);
-	nh.param("frame_id", frame_id, std::string("optodaq_" + sensor_location + "link") );
+	nh.param("frame_id", frame_id, std::string("optodaq_l_sensor_link") );
 	nh.param("publish_wrench", publish_wrench, false );
 	nh.param("cancel_bias", cancel_bias, false );
 
@@ -155,6 +155,7 @@ int main(int argc, char **argv)
 	ROS_INFO("IP address: %s", ip.c_str());
 	ROS_INFO("Publish rate: %f Hz", pub_rate_hz);
 	ROS_INFO("Filter setting: %i (0 = No filter; 1 = 500 Hz; 2 = 150 Hz; 3 = 50 Hz; 4 = 15 Hz; 5 = 5 Hz; 6 = 1.5 Hz)", filter);
+	ROS_INFO("Robot frame: %s", frame_id.c_str());
 	ROS_INFO("Sensor data topic name: %s", topic_name.c_str());
 	ROS_INFO("--------------------------------------------------------------------------------------------------------------");
 
