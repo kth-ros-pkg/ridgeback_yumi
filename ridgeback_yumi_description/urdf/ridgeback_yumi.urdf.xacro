@@ -52,6 +52,7 @@
   <xacro:property name="yumi_offset_x" value="0.06" />
   <xacro:property name="yumi_height" value="0.25" />
   <xacro:property name="kinect_zrotation_fix" value="${- PI / 2.0}" />
+  <xacro:property name="kinect_base_pitch" value="${ -PI/2.0 }" />
 
   <joint name="ridgeback_base_to_pedestal" type="fixed">
     <origin rpy="0 0 ${PI}" xyz="${pedestal_offset_x} 0 ${pedestal_height}" />
@@ -128,25 +129,25 @@
    <joint name="kinect2_to_right_kinect_base" type="fixed">
     <parent link="yumi_base_link" />
     <child link="right_kinect_base" />
-    <origin rpy="0 ${-PI/6} 0.17" xyz="0.1 -0.03 0.56" />
+    <origin rpy="0 ${-PI/2} 0.17" xyz="-0.1 -0.03 0.56" />
   </joint>
 
   <joint name="kinect2_to_left_kinect_base" type="fixed">
     <parent link="yumi_base_link" />
     <child link="left_kinect_base" />
-    <origin rpy="0 ${-PI/6} -0.17" xyz="0.1 0.03 0.56" />
+    <origin rpy="0 ${-PI/2} -0.17" xyz="-0.1 0.03 0.56" />
   </joint>
 
   <joint name="yumi_to_middle_kinect_base" type="fixed">
     <parent link="yumi_base_link" />
     <child link="middle_kinect_base" />
-    <origin rpy="0 ${-PI/6} 0" xyz="0.05 0 0.56" />
+    <origin rpy="0 ${kinect_base_pitch} 0" xyz="-0.1 0 0.56" />
   </joint>
 
   <joint name="middle_kinect_base_to_kinect2" type="fixed">
     <parent link="middle_kinect_base" />
     <child link="kinect2" />
-    <origin rpy="${-PI/4} 0 ${kinect_zrotation_fix}" xyz="0.25 0 0" />
+    <origin rpy="${-PI/2} 0 ${kinect_zrotation_fix}" xyz="0.25 0 0" />
   </joint>
 
 
