@@ -29,15 +29,9 @@
     </node>
     <node name="yumi_joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
         <rosparam param="source_list">["/yumi/joint_states", "/yumi/gripper_states"]</rosparam>
-        <!-- <remap from="/joint_states" to="/yumi/joint_states" /> -->
     </node>
 
     <node name="yumi_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
-        <!-- <remap from="/joint_states" to="/yumi/joint_states" /> -->
-    <!-- </node> -->
-    <!-- <param name="startup_time" value="10"/> -->
-    <!-- <node name="joint_remapper" pkg="yumi_hw" type="rws_egm_joints_remap.py" /> -->
-
 
 
     <param name="use_gui" value="true"/>
