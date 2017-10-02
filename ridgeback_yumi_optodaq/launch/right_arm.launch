@@ -3,7 +3,7 @@
 
 	<node name="right_etherdaq_node" pkg="ridgeback_yumi_optodaq" type="right_etherdaq_node" respawn="false" output="screen" ns="yumi">
 		<param name="ip" value="192.168.125.4"/>
-	    <param name="pub_rate_hz" value="200.0"/>
+	    <param name="pub_rate_hz" value="1000.0"/>
 	    <param name="filter" value="4"/>
 	    <param name="frame_id" value="optodaq_r_sensor_link"/>
 	    <param name="cancel_bias" value="false"/>

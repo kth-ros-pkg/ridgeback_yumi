@@ -1188,7 +1188,7 @@
   </transmission>
   <!--joint between {parent} and base-->
   <joint name="yumi_link_7_r_joint" type="fixed">
-    <origin rpy="0 0 3.14159265359" xyz="0 0 0.033"/>
+    <origin rpy="0 3.14159265359 -0.785398163397" xyz="0 0 0.033"/>
     <parent link="yumi_link_7_r"/>
     <child link="optodaq_r_sensor_link"/>
   </joint>
@@ -1203,7 +1203,7 @@
   </link>
   <!--joint between {parent} and base-->
   <joint name="yumi_link_7_l_joint" type="fixed">
-    <origin rpy="0 0 3.14159265359" xyz="0 0 0.033"/>
+    <origin rpy="0 3.14159265359 -0.785398163397" xyz="0 0 0.033"/>
     <parent link="yumi_link_7_l"/>
     <child link="optodaq_l_sensor_link"/>
   </joint>
@@ -1218,7 +1218,7 @@
   </link>
   <!--joint between {parent} and base-->
   <joint name="optodaq_r_sensor_link_joint" type="fixed">
-    <origin rpy="0 0 3.14159265359" xyz="0 0 0.033"/>
+    <origin rpy="3.14159265359 0.0 0.785398163397" xyz="0 0 -0.033"/>
     <parent link="optodaq_r_sensor_link"/>
     <child link="gripper_r_base"/>
   </joint>
@@ -1330,7 +1330,7 @@
   </transmission>
   <!--joint between {parent} and base-->
   <joint name="optodaq_l_sensor_link_joint" type="fixed">
-    <origin rpy="0 0 3.14159265359" xyz="0 0 0.033"/>
+    <origin rpy="3.14159265359 0.0 0.785398163397" xyz="0 0 -0.033"/>
     <parent link="optodaq_l_sensor_link"/>
     <child link="gripper_l_base"/>
   </joint>
