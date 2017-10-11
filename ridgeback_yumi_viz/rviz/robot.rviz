@@ -8,9 +8,7 @@ Panels:
         - /Status1
         - /TF1/Tree1
         - /WrenchStamped1
-        - /WrenchStamped1/Status1
         - /WrenchStamped2
-        - /WrenchStamped2/Status1
       Splitter Ratio: 0.5
     Tree Height: 718
   - Class: rviz/Selection
@@ -357,8 +355,6 @@ Visualization Manager:
           Value: true
         rear_cover_link:
           Value: false
-        rear_laser:
-          Value: false
         rear_left_wheel_link:
           Value: false
         rear_lights_link:
@@ -438,8 +434,6 @@ Visualization Manager:
               left_side_cover_link:
                 {}
               rear_cover_link:
-                {}
-              rear_laser:
                 {}
               rear_lights_link:
                 {}
@@ -538,25 +532,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 3.44261384
+      Distance: 3.86587739
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 1.80652142
-        Y: 9.55906868
-        Z: 0.280864
+        X: 0.411601067
+        Y: 0.0255661607
+        Z: 0.21960938
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.182313845
+      Pitch: 0.245045334
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 1.16125727
+      Yaw: 6.26957512
     Saved: ~
 Window Geometry:
   Displays:

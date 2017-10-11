@@ -10,10 +10,10 @@
     <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
     <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
     <group name="left_arm">
-        <chain base_link="yumi_body" tip_link="optodaq_l_sensor_link" />
+        <chain base_link="yumi_body" tip_link="gripper_l_base" />
     </group>
     <group name="right_arm">
-        <chain base_link="yumi_body" tip_link="optodaq_r_sensor_link" />
+        <chain base_link="yumi_body" tip_link="gripper_r_base" />
     </group>
     <group name="both_arms">
         <group name="left_arm" />
@@ -30,8 +30,8 @@
         <link name="gripper_r_finger_l" />
     </group>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-    <end_effector name="left_gripper_ee" parent_link="yumi_link_7_l" group="left_gripper" parent_group="left_arm" />
-    <end_effector name="right_gripper_ee" parent_link="yumi_link_7_r" group="right_gripper" parent_group="right_arm" />
+    <end_effector name="left_gripper_ee" parent_link="gripper_l_base" group="left_gripper" parent_group="left_arm" />
+    <end_effector name="right_gripper_ee" parent_link="gripper_r_base" group="right_gripper" parent_group="right_arm" />
     <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
     <passive_joint name="gripper_l_joint_m" />
     <passive_joint name="gripper_r_joint_m" />
