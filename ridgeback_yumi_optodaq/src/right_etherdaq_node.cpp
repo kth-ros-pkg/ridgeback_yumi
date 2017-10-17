@@ -110,26 +110,25 @@ int main(int argc, char **argv)
 	("frame_id", po::value<string>(&frame_id)->default_value("base_link"), "Frame ID for Wrench data")  
 	;
 
-	if (filter < 0 || filter > 6) 
+	if(filter < 0 || filter > 6) 
 	{
 		cout << desc << endl;
 		cerr<<"Please specify a valid filtering value instead of " << filter << endl;
 		exit(EXIT_FAILURE);
 	}
 
-	if (publish_wrench)
+	if(publish_wrench)
 	{
 		publish_wrench = true;
 		ROS_WARN("Publishing EthernetDAQ data as geometry_msgs::Wrench is deprecated");
 	}
 
-	if (cancel_bias)
+	etherdaq = new optoforce_etherdaq_driver::EtherDAQDriver(ip, pub_rate_hz, filter);
+
+	if(cancel_bias)
 	{
 		etherdaq->doZero();
 	}
-
-	etherdaq = new optoforce_etherdaq_driver::EtherDAQDriver(ip, pub_rate_hz, filter);
-
 	
 	std::string topic_name = sensor_location + "ethdaq_data";
 	bool is_raw_data = etherdaq->isRawData();

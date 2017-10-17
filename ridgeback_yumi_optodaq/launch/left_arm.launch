@@ -6,7 +6,7 @@
 	    <param name="pub_rate_hz" value="1000.0"/>
 	    <param name="filter" value="4"/>
 	    <param name="frame_id" value="optodaq_l_sensor_link"/>
-	    <param name="cancel_bias" value="false"/>
+	    <param name="cancel_bias" value="true"/>
 	</node>
 
 </launch>
