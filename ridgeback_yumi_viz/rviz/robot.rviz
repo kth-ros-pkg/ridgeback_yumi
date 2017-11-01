@@ -355,6 +355,8 @@ Visualization Manager:
           Value: true
         rear_cover_link:
           Value: false
+        rear_laser:
+          Value: true
         rear_left_wheel_link:
           Value: false
         rear_lights_link:
@@ -434,6 +436,8 @@ Visualization Manager:
               left_side_cover_link:
                 {}
               rear_cover_link:
+                {}
+              rear_laser:
                 {}
               rear_lights_link:
                 {}
@@ -519,7 +523,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: odom
+    Fixed Frame: base_link
     Frame Rate: 30
   Name: root
   Tools:

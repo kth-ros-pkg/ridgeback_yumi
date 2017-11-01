@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<launch>
-
-	<include file="$(find ridgeback_yumi_optodaq)/launch/left_arm.launch"/>
-
-	<include file="$(find ridgeback_yumi_optodaq)/launch/right_arm.launch"/>
-
-</launch>
