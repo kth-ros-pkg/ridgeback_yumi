@@ -10,9 +10,11 @@
 
     <!-- Load joint controller configurations from YAML file to parameter server -->
     <rosparam file="$(find yumi_control)/config/traj_controllers.yaml" command="load" ns="/yumi"/>
+    <rosparam file="$(find yumi_control)/config/ft_sensors_controllers.yaml" command="load" ns="/yumi"/>
     <arg name="arm_controllers" default="joint_state_controller
                                      joint_traj_vel_controller_l
-                                     joint_traj_vel_controller_r"/>
+                                     joint_traj_vel_controller_r
+                                     force_torque_sensor_controller"/>
     <node name="arm_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="$(arg arm_controllers)" ns="/yumi"/>
     <arg name="ip" default="192.168.125.1"/>
     <arg name="port" default="80"/>
@@ -31,8 +33,10 @@
         <rosparam param="source_list">["/yumi/joint_states", "/yumi/gripper_states"]</rosparam>
     </node>
 
-    <node name="yumi_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
-
+    <node name="yumi_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+        <param name="use_tf_static" value="false"/>
+        <param name="publish_frequency" value="250"/>
+    </node>
 
     <param name="use_gui" value="true"/>
     <arg name="mode" default="robot" />
