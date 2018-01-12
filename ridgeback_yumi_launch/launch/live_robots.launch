@@ -15,14 +15,14 @@
     <group unless="$(arg use_traj)">
       <rosparam file="$(find yumi_control)/config/velocity_controllers.yaml" command="load" ns="/yumi"/>
       <arg name="arm_controllers" value="joint_state_controller
-                                       joint_vel_controller_0_r
+                                       joint_vel_controller_7_r
                                        joint_vel_controller_1_r
                                        joint_vel_controller_6_r
                                        joint_vel_controller_2_r
                                        joint_vel_controller_3_r
                                        joint_vel_controller_4_r
                                        joint_vel_controller_5_r
-                                       joint_vel_controller_0_l
+                                       joint_vel_controller_7_l
                                        joint_vel_controller_1_l
                                        joint_vel_controller_6_l
                                        joint_vel_controller_2_l
