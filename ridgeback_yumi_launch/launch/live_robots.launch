@@ -51,7 +51,7 @@
     <arg name="optodaq_ip_l" default="192.168.125.3"/>
     <arg name="optodaq_ip_r" default="192.168.125.4"/>
     <node required="true" name="yumi_hw" pkg="yumi_hw" type="yumi_hw_ifce_node" respawn="false" ns="/yumi" output="screen">
-        <param name="name" value="$(arg name)" />
+        <!-- <param name="name" value="$(arg name)" /> -->
         <param name="ip" value="$(arg ip)"/>
         <param name="port" value="$(arg port)"/>
         <param name="use_egm" value="$(arg egm)"/>
