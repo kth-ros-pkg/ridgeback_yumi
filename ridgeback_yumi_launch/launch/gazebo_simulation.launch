@@ -19,8 +19,7 @@
                      joint_vel_controller_2_l
                      joint_vel_controller_3_l
                      joint_vel_controller_4_l
-                     joint_vel_controller_5_l
-                     force_torque_sensor_controller"/>
+                     joint_vel_controller_5_l"/>
     <node name="arm_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="$(arg arm_controllers)" ns="/yumi"/>
   </group>
 
@@ -28,8 +27,7 @@
     <rosparam file="$(find yumi_control)/config/traj_controllers.yaml" command="load" ns="/yumi"/>
     <arg name="arm_controllers" value="joint_state_controller
                    joint_traj_vel_controller_l
-                   joint_traj_vel_controller_r
-                   force_torque_sensor_controller"/>
+                   joint_traj_vel_controller_r"/>
     <node name="arm_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="$(arg arm_controllers)" ns="/yumi"/>
   </group>
 
