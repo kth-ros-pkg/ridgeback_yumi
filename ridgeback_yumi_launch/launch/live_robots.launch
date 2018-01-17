@@ -66,6 +66,8 @@
     </node>
     <node name="yumi_joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
         <rosparam param="source_list">["/yumi/joint_states", "/yumi/gripper_states"]</rosparam>
+      <rosparam param="source_list">["/yumi/joint_states", "/yumi/gripper_states", "joint_states"]</rosparam>
+      <param name="publish_default_positions" value="false"/>
     </node>
 
     <node name="yumi_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
