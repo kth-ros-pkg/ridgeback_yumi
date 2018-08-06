@@ -27,21 +27,21 @@
 
   <!-- Optoforce F/T sensors -->
   <xacro:yumi_optodaq_sensor name="optodaq_r" parent="yumi_link_7_r">
-      <origin xyz="0 0 0.033" rpy="0 0 ${-PI/2}" />
+      <origin xyz="0 0 0.0445" rpy="0 0 ${-PI/2}" />
   </xacro:yumi_optodaq_sensor>
 
   <xacro:yumi_optodaq_sensor name="optodaq_l" parent="yumi_link_7_l">
-    <origin xyz="0 0 0.033" rpy="0 0 ${-PI/2}" />
+    <origin xyz="0 0 0.0445" rpy="0 0 ${-PI/2}" />
   </xacro:yumi_optodaq_sensor>
 
   <!-- Right gripper -->
   <xacro:yumi_servo_gripper name="gripper_r" hardware_interface="hardware_interface/EffortJointInterface" parent="optodaq_r_sensor_link">
-    <origin xyz="0 0 0.033" rpy="0 0.0 ${PI/4}" />
+    <origin xyz="0 0 0.0445" rpy="0 0.0 ${PI/4}" />
   </xacro:yumi_servo_gripper>
 
   <!-- Left gripper -->
   <xacro:yumi_servo_gripper name="gripper_l" hardware_interface="hardware_interface/EffortJointInterface" parent="optodaq_l_sensor_link">
-    <origin xyz="0 0 0.033" rpy="0 0.0 ${PI/4}" />
+    <origin xyz="0 0 0.0445" rpy="0 0.0 ${PI/4}" />
   </xacro:yumi_servo_gripper>
 
 
