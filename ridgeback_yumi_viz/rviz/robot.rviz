@@ -7,8 +7,6 @@ Panels:
         - /Global Options1
         - /Status1
         - /TF1/Tree1
-        - /WrenchStamped1
-        - /WrenchStamped2
       Splitter Ratio: 0.5
     Tree Height: 715
   - Class: rviz/Selection
@@ -48,7 +46,7 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
-    - Alpha: 0.5
+    - Alpha: 0.600000024
       Class: rviz/RobotModel
       Collision Enabled: false
       Enabled: true
@@ -497,16 +495,16 @@ Visualization Manager:
     - Alpha: 1
       Arrow Width: 0.5
       Class: rviz/WrenchStamped
-      Enabled: true
+      Enabled: false
       Force Arrow Scale: 2
       Force Color: 204; 51; 51
       History Length: 1
-      Name: WrenchStamped
+      Name: Optodaq-left
       Topic: /yumi/optodaq_l
       Torque Arrow Scale: 2
       Torque Color: 204; 204; 51
       Unreliable: false
-      Value: true
+      Value: false
     - Alpha: 1
       Arrow Width: 0.5
       Class: rviz/WrenchStamped
@@ -514,7 +512,7 @@ Visualization Manager:
       Force Arrow Scale: 2
       Force Color: 204; 51; 51
       History Length: 1
-      Name: WrenchStamped
+      Name: Optodaq-right
       Topic: /yumi/optodaq_r
       Torque Arrow Scale: 2
       Torque Color: 204; 204; 51
@@ -537,7 +535,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 4.08572197
+      Distance: 4.134202
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
@@ -552,10 +550,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.245045334
+      Pitch: 0.509999752
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 6.26957512
+      Yaw: 0
     Saved: ~
 Window Geometry:
   Displays:

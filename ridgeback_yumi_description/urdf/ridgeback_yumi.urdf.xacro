@@ -27,11 +27,11 @@
 
   <!-- Optoforce F/T sensors -->
   <xacro:yumi_optodaq_sensor name="optodaq_r" parent="yumi_link_7_r">
-      <origin xyz="0 0 0.0445" rpy="0 0 ${-PI/2}" />
+      <origin xyz="0 0 0.0445" rpy="0 0 0" />
   </xacro:yumi_optodaq_sensor>
 
   <xacro:yumi_optodaq_sensor name="optodaq_l" parent="yumi_link_7_l">
-    <origin xyz="0 0 0.0445" rpy="0 0 ${-PI/2}" />
+    <origin xyz="0 0 0.0445" rpy="0 0 0" />
   </xacro:yumi_optodaq_sensor>
 
   <!-- Right gripper -->
